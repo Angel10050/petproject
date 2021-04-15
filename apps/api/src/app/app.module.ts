@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { CoreModule } from "@petproject/core";
+import { CoreModule } from '@petproject/core'
 
 @Module({
   imports: [CoreModule],

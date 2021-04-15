@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule } from "@nestjs/config";
-import { validationSchema } from "./config/validation";
-import { configuration } from "./config/configuration";
+import { ConfigModule } from '@nestjs/config'
+import { validationSchema } from './config/validation'
+import { configuration } from './config/configuration'
 
 @Module({
-  imports : [ConfigModule.forRoot({
-    isGlobal : true,
-    load : [configuration],
-    validationSchema,
-  })],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+      validationSchema,
+    }),
+  ],
   controllers: [],
   providers: [],
   exports: [],
