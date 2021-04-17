@@ -2,6 +2,9 @@
   "name": "petproject",
   "version": "0.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "14.16.1"
+  },
   "scripts": {
     "nx": "nx",
     "start": "node dist/apps/api/main.js",
