@@ -20,4 +20,13 @@ describe('CourseResolver', () => {
       expect(await courseResolver.courses()).toBe(specResult)
     })
   })
+
+  describe('course', () => {
+    it('should return a single course found his id ', async function () {
+      const specResult = { id: 'courseUUID-001', title: 'Pet with graphQL' }
+
+      jest.spyOn(courseService, 'course').mockImplementation(() => specResult)
+      expect(await courseResolver.course('courseUUID-001')).toBe(specResult)
+    })
+  })
 })

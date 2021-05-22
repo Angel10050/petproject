@@ -3,16 +3,16 @@ import { Course } from './models/course'
 
 @Injectable()
 export class CourseService {
-  item: Course[] = [
+  items: Course[] = [
     { id: 'courseUUID-001', title: 'Pet with graphQL' },
     { id: 'courseUUID-002', title: 'Pet with graphQL' },
   ]
 
   public courses() {
-    return this.item
+    return this.items
   }
 
   public course(id: string) {
-    this.item.find((course) => course.id === id)
+    return this.items.find((course) => course.id === id)
   }
 }

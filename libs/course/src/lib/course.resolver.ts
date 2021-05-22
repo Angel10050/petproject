@@ -1,4 +1,4 @@
-import { Query, Resolver } from '@nestjs/graphql'
+import { Args, Query, Resolver } from '@nestjs/graphql'
 import { Course } from './models/course'
 import { CourseService } from './course.service'
 
@@ -9,5 +9,10 @@ export class CourseResolver {
   @Query(() => [Course])
   courses() {
     return this.service.courses()
+  }
+
+  @Query(() => Course, { nullable: true })
+  course(@Args('id') id: string) {
+    return this.service.course(id)
   }
 }
