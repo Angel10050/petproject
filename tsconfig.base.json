@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@petproject/core": ["libs/core/src/index.ts"]
+      "@petproject/core": ["libs/core/src/index.ts"],
+      "@petproject/course": ["libs/course/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
