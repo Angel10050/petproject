@@ -27,4 +27,9 @@ export class CourseResolver {
   updateCourse(@Args('id') id: string, @Args('input') input: UpdateCourseInput) {
     return this.service.updateCourse(id, input)
   }
+
+  @Mutation(() => Boolean, { nullable: true })
+  deleteCourse(@Args('id') id: string) {
+    return this.service.deleteCourse(id)
+  }
 }

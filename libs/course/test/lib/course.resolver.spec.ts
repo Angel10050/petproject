@@ -58,10 +58,19 @@ describe('CourseResolver', () => {
     it('should update an existing course', async function () {
       const specResult = { id: 'courseUUID-001', title: 'Pet with graphQL', description: 'A new description here' }
 
-      jest.spyOn(courseService, 'createCourse').mockImplementation(() => specResult)
+      jest.spyOn(courseService, 'updateCourse').mockImplementation(() => specResult)
       expect(
         await courseResolver.updateCourse('courseUUID-001', { description: 'A new description here' }),
       ).toStrictEqual(specResult)
+    })
+  })
+
+  describe('deleteCourse', () => {
+    it('should delete an existing course', async function () {
+      const specResult = true
+
+      jest.spyOn(courseService, 'deleteCourse').mockImplementation(() => specResult)
+      expect(await courseResolver.deleteCourse('courseUUID-001')).toBe(specResult)
     })
   })
 })

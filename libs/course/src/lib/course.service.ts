@@ -43,4 +43,13 @@ export class CourseService {
 
     return updated
   }
+
+  deleteCourse(id: string) {
+    const course = this.course(id)
+    if (!course) {
+      return false
+    }
+    this.items = this.items.filter((value) => value.id !== id)
+    return true
+  }
 }
