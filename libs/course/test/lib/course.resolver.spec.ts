@@ -1,13 +1,17 @@
 import { CourseResolver } from '../../src/lib/course.resolver'
 import { CourseService } from '../../src/lib/course.service'
+import { Test } from '@nestjs/testing'
 
 describe('CourseResolver', () => {
   let courseResolver: CourseResolver
   let courseService: CourseService
 
-  beforeEach(() => {
-    courseService = new CourseService()
-    courseResolver = new CourseResolver(courseService)
+  beforeEach(async () => {
+    const moduleRef = await Test.createTestingModule({
+      providers: [CourseService, CourseResolver],
+    }).compile()
+    courseService = moduleRef.get<CourseService>(CourseService)
+    courseResolver = moduleRef.get<CourseResolver>(CourseResolver)
   })
 
   describe('courses', () => {
