@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Course } from './models/course'
 import { CreateCourseInput } from './dto/create-course.input'
+import { UpdateCourseInput } from './dto/update-course.input'
 
 @Injectable()
 export class CourseService {
@@ -24,5 +25,22 @@ export class CourseService {
     }
     this.items.push(newCourse)
     return newCourse
+  }
+
+  updateCourse(id: string, input: UpdateCourseInput) {
+    const course = this.course(id)
+    const updated = {
+      ...course,
+      ...input,
+    }
+
+    this.items = this.items.map((item) => {
+      if (item.id === id) {
+        return updated
+      }
+      return item
+    })
+
+    return updated
   }
 }

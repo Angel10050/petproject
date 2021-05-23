@@ -34,7 +34,7 @@ describe('CourseResolver', () => {
     })
   })
 
-  describe('course', () => {
+  describe('createCourse', () => {
     it('should create a new course', async function () {
       const specResult = {
         id: 'courseUUID-003',
@@ -51,6 +51,17 @@ describe('CourseResolver', () => {
           imageUrl: 'www.image.com/image.png',
         }),
       ).toBe(specResult)
+    })
+  })
+
+  describe('updateCourse', () => {
+    it('should update an existing course', async function () {
+      const specResult = { id: 'courseUUID-001', title: 'Pet with graphQL', description: 'A new description here' }
+
+      jest.spyOn(courseService, 'createCourse').mockImplementation(() => specResult)
+      expect(
+        await courseResolver.updateCourse('courseUUID-001', { description: 'A new description here' }),
+      ).toStrictEqual(specResult)
     })
   })
 })
