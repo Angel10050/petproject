@@ -33,4 +33,24 @@ describe('CourseResolver', () => {
       expect(await courseResolver.course('courseUUID-001')).toBe(specResult)
     })
   })
+
+  describe('course', () => {
+    it('should create a new course', async function () {
+      const specResult = {
+        id: 'courseUUID-003',
+        title: 'Pet with graphQL',
+        description: 'Pet with graphQL',
+        imageUrl: 'www.image.com/image.png',
+      }
+
+      jest.spyOn(courseService, 'createCourse').mockImplementation(() => specResult)
+      expect(
+        await courseResolver.createCourse({
+          title: 'Pet with graphQL',
+          description: 'Pet with graphQL',
+          imageUrl: 'www.image.com/image.png',
+        }),
+      ).toBe(specResult)
+    })
+  })
 })
