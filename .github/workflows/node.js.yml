@@ -26,5 +26,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn
-    - run: nx build api --prod
-    - run: nx test
+    - run: yarn build
+    - run: yarn test
