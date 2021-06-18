@@ -37,6 +37,17 @@ describe('CourseResolver', () => {
     })
   })
 
+  describe('course not found', () => {
+    it('should return an error ', async function () {
+      const specResult = null
+
+      jest.spyOn(courseService, 'course').mockImplementation(() => specResult)
+      await expect(() => courseResolver.course('courseUUID-001')).toThrowError(
+        new CourseException(CourseMessages.COURSE_NOT_FOUND),
+      )
+    })
+  })
+
   describe('createCourse', () => {
     it('should create a new course', async function () {
       const specResult = {

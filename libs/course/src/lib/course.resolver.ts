@@ -17,7 +17,11 @@ export class CourseResolver {
 
   @Query(() => Course, { nullable: true })
   course(@Args('id') id: string) {
-    return this.service.course(id)
+    const serviceCall = this.service.course(id)
+    if (!serviceCall) {
+      throw new CourseException(CourseMessages.COURSE_NOT_FOUND)
+    }
+    return serviceCall
   }
 
   @Mutation(() => Course, { nullable: true })
