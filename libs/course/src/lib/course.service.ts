@@ -2,11 +2,12 @@ import { Injectable } from '@nestjs/common'
 import { Course } from './models/course'
 import { CreateCourseInput } from './dto/create-course.input'
 import { UpdateCourseInput } from './dto/update-course.input'
+import { CourseMessages } from './enus/CourseMessages'
 
 @Injectable()
 export class CourseService {
   items: Course[] = [
-    { id: 'courseUUID-001', title: 'Pet with graphQL' },
+    { id: 'courseUUID-001', title: 'Pet expert with graphQL' },
     { id: 'courseUUID-002', title: 'Pet with graphQL' },
   ]
 
@@ -18,16 +19,24 @@ export class CourseService {
     return this.items.find((course) => course.id === id)
   }
 
-  createCourse(input: CreateCourseInput) {
+  public courseByTitle(title: string) {
+    return this.items.find((course) => course.title === title)
+  }
+
+  public createCourse(input: CreateCourseInput) {
     const newCourse = {
       id: Date.now().toString(),
       ...input,
     }
-    this.items.push(newCourse)
-    return newCourse
+    console.log(this.courseByTitle(newCourse.title))
+    if (this.courseByTitle(newCourse.title) === undefined) {
+      this.items.push(newCourse)
+      return newCourse
+    }
+    return CourseMessages.TITLE_ALREADY_EXIST
   }
 
-  updateCourse(id: string, input: UpdateCourseInput) {
+  public updateCourse(id: string, input: UpdateCourseInput) {
     const course = this.course(id)
     const updated = {
       ...course,
@@ -47,7 +56,7 @@ export class CourseService {
     return updated
   }
 
-  deleteCourse(id: string) {
+  public deleteCourse(id: string) {
     const course = this.course(id)
     if (!course) {
       return false

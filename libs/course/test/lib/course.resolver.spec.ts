@@ -68,6 +68,21 @@ describe('CourseResolver', () => {
     })
   })
 
+  describe('createCourse fail', () => {
+    it('should create an error', async function () {
+      const specResult = CourseMessages.TITLE_ALREADY_EXIST
+
+      jest.spyOn(courseService, 'createCourse').mockImplementation(() => specResult)
+      await expect(() =>
+        courseResolver.createCourse({
+          title: 'Pet with graphQL',
+          description: 'Pet with graphQL',
+          imageUrl: 'www.image.com/image.png',
+        }),
+      ).toThrowError(new CourseException(CourseMessages.TITLE_ALREADY_EXIST))
+    })
+  })
+
   describe('updateCourse', () => {
     it('should update an existing course', async function () {
       const specResult = { id: 'courseUUID-001', title: 'Pet with graphQL', description: 'A new description here' }

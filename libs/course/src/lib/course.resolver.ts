@@ -26,7 +26,11 @@ export class CourseResolver {
 
   @Mutation(() => Course, { nullable: true })
   createCourse(@Args('input') input: CreateCourseInput) {
-    return this.service.createCourse(input)
+    const serviceCall = this.service.createCourse(input)
+    if (serviceCall === CourseMessages.TITLE_ALREADY_EXIST) {
+      throw new CourseException(CourseMessages.TITLE_ALREADY_EXIST)
+    }
+    return serviceCall
   }
 
   @Mutation(() => Course, { nullable: true })
