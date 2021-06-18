@@ -4,6 +4,7 @@ import { CourseService } from './course.service'
 import { CreateCourseInput } from './dto/create-course.input'
 import { UpdateCourseInput } from './dto/update-course.input'
 import { CourseMessages } from './enus/CourseMessages'
+import { CourseException } from './exception/course.exception'
 
 @Resolver()
 export class CourseResolver {
@@ -33,7 +34,7 @@ export class CourseResolver {
   deleteCourse(@Args('id') id: string) {
     const serviceCall = this.service.deleteCourse(id)
     if (!serviceCall) {
-      return CourseMessages.COURSE_NOT_FOUND
+      throw new CourseException(CourseMessages.COURSE_NOT_FOUND)
     }
     return CourseMessages.COURSE_DELETED_SUCCESSFULLY
   }

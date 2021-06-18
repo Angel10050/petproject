@@ -1,6 +1,8 @@
 import { CourseResolver } from '../../src/lib/course.resolver'
 import { CourseService } from '../../src/lib/course.service'
 import { Test } from '@nestjs/testing'
+import { CourseException } from '../../src/lib/exception/course.exception'
+import { CourseMessages } from '../../src/lib/enus/CourseMessages'
 
 describe('CourseResolver', () => {
   let courseResolver: CourseResolver
@@ -80,7 +82,9 @@ describe('CourseResolver', () => {
       const specResult = false
 
       jest.spyOn(courseService, 'deleteCourse').mockImplementation(() => specResult)
-      expect(await courseResolver.deleteCourse('courseUUID-008')).toStrictEqual('El curso no existe')
+      await expect(() => courseResolver.deleteCourse('courseUUID-008')).toThrowError(
+        new CourseException(CourseMessages.COURSE_NOT_FOUND),
+      )
     })
   })
 })
