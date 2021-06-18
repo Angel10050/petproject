@@ -6,7 +6,7 @@
     "nx": "nx",
     "start": "node dist/apps/api/main.js",
     "build": "nx build api --prod",
-    "test": "nx test",
+    "test": "nx run-many --all --target=test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",
