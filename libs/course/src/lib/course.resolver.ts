@@ -3,6 +3,7 @@ import { Course } from './models/course'
 import { CourseService } from './course.service'
 import { CreateCourseInput } from './dto/create-course.input'
 import { UpdateCourseInput } from './dto/update-course.input'
+import { CourseMessages } from './enus/CourseMessages'
 
 @Resolver()
 export class CourseResolver {
@@ -28,8 +29,12 @@ export class CourseResolver {
     return this.service.updateCourse(id, input)
   }
 
-  @Mutation(() => Boolean, { nullable: true })
+  @Mutation(() => String, { nullable: true })
   deleteCourse(@Args('id') id: string) {
-    return this.service.deleteCourse(id)
+    const serviceCall = this.service.deleteCourse(id)
+    if (!serviceCall) {
+      return CourseMessages.COURSE_NOT_FOUND
+    }
+    return CourseMessages.COURSE_DELETED_SUCCESSFULLY
   }
 }

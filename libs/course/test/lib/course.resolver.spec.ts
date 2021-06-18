@@ -8,7 +8,8 @@ describe('CourseResolver', () => {
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      providers: [CourseService, CourseResolver],
+      controllers: [CourseResolver],
+      providers: [CourseService],
     }).compile()
     courseService = moduleRef.get<CourseService>(CourseService)
     courseResolver = moduleRef.get<CourseResolver>(CourseResolver)
@@ -70,7 +71,16 @@ describe('CourseResolver', () => {
       const specResult = true
 
       jest.spyOn(courseService, 'deleteCourse').mockImplementation(() => specResult)
-      expect(await courseResolver.deleteCourse('courseUUID-001')).toBe(specResult)
+      expect(await courseResolver.deleteCourse('courseUUID-001')).toStrictEqual('Curso eliminado exitosamente')
+    })
+  })
+
+  describe('deleteCourse', () => {
+    it('should not delete an existing course', async function () {
+      const specResult = false
+
+      jest.spyOn(courseService, 'deleteCourse').mockImplementation(() => specResult)
+      expect(await courseResolver.deleteCourse('courseUUID-008')).toStrictEqual('El curso no existe')
     })
   })
 })
