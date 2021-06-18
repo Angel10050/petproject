@@ -41,6 +41,9 @@ export class CourseService {
       return item
     })
 
+    if (!course) {
+      return course
+    }
     return updated
   }
 

@@ -31,7 +31,11 @@ export class CourseResolver {
 
   @Mutation(() => Course, { nullable: true })
   updateCourse(@Args('id') id: string, @Args('input') input: UpdateCourseInput) {
-    return this.service.updateCourse(id, input)
+    const serviceCall = this.service.updateCourse(id, input)
+    if (!serviceCall) {
+      throw new CourseException(CourseMessages.COURSE_NOT_FOUND)
+    }
+    return serviceCall
   }
 
   @Mutation(() => String, { nullable: true })
