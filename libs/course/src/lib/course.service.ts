@@ -28,7 +28,7 @@ export class CourseService {
       id: Date.now().toString(),
       ...input,
     }
-    console.log(this.courseByTitle(newCourse.title))
+
     if (this.courseByTitle(newCourse.title) === undefined) {
       this.items.push(newCourse)
       return newCourse
