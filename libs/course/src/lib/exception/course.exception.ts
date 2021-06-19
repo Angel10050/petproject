@@ -1,5 +1,5 @@
 import { ApolloError } from 'apollo-server-errors'
-import { CourseMessages } from '../enus/CourseMessages'
+import { CourseMessages } from '../enums/CourseMessages'
 
 export class CourseException extends ApolloError {
   constructor(error: CourseMessages) {

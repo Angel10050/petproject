@@ -2,7 +2,7 @@ import { CourseResolver } from '../../src/lib/course.resolver'
 import { CourseService } from '../../src/lib/course.service'
 import { Test } from '@nestjs/testing'
 import { CourseException } from '../../src/lib/exception/course.exception'
-import { CourseMessages } from '../../src/lib/enus/CourseMessages'
+import { CourseMessages } from '../../src/lib/enums/CourseMessages'
 
 describe('CourseResolver', () => {
   let courseResolver: CourseResolver
@@ -10,8 +10,7 @@ describe('CourseResolver', () => {
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      controllers: [CourseResolver],
-      providers: [CourseService],
+      providers: [CourseService, CourseResolver],
     }).compile()
     courseService = moduleRef.get<CourseService>(CourseService)
     courseResolver = moduleRef.get<CourseResolver>(CourseResolver)

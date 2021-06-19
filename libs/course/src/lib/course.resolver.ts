@@ -3,7 +3,7 @@ import { Course } from './models/course'
 import { CourseService } from './course.service'
 import { CreateCourseInput } from './dto/create-course.input'
 import { UpdateCourseInput } from './dto/update-course.input'
-import { CourseMessages } from './enus/CourseMessages'
+import { CourseMessages } from './enums/CourseMessages'
 import { CourseException } from './exception/course.exception'
 
 @Resolver()

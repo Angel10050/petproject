@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { Course } from './models/course'
 import { CreateCourseInput } from './dto/create-course.input'
 import { UpdateCourseInput } from './dto/update-course.input'
-import { CourseMessages } from './enus/CourseMessages'
+import { CourseMessages } from './enums/CourseMessages'
 
 @Injectable()
 export class CourseService {
